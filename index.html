@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>downloads</title>
+  <title>welcome</title>
   <style>
-    /* Rainbow gradient animation */
+    /* ===== Rainbow background animation ===== */
     @keyframes rainbowShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -17,13 +17,13 @@
       padding: 0;
       font-family: Arial, sans-serif;
       color: #f0c330;
-      text-align: center;
       overflow-x: hidden;
       position: relative;
+      text-align: center;
       z-index: 0;
     }
 
-    /* Animated rainbow overlay */
+    /* ===== Animated rainbow background ===== */
     body::before {
       content: "";
       position: fixed;
@@ -37,7 +37,7 @@
       z-index: -2;
     }
 
-    /* Slight dark overlay for readability */
+    /* ===== Dark overlay for readability ===== */
     body::after {
       content: "";
       position: fixed;
@@ -49,123 +49,108 @@
       z-index: -1;
     }
 
+    /* ===== Navbar ===== */
+    .navbar {
+      position: fixed;
+      top: 15px;
+      right: 25px;
+      display: flex;
+      gap: 20px;
+      z-index: 5;
+    }
+
+    .navbar a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .navbar a:hover {
+      background: #ffcc00;
+      color: #000;
+    }
+
+    /* ===== Rainbow text title ===== */
+    .site-title {
+      position: fixed;
+      top: 15px;
+      left: 25px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowShift 6s linear infinite;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      user-select: none;
+    }
+
+    /* ===== Main Content ===== */
+    .main {
+      margin-top: 140px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(20, 20, 20, 0.85);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
     h1 {
       color: #ffcc00;
-      font-size: 2.5rem;
-      margin-top: 25px;
+      font-size: 2.8rem;
       text-shadow: 2px 2px 5px #000;
+      margin-bottom: 20px;
     }
 
     p {
       color: #eee;
+      font-size: 1.05rem;
+      line-height: 1.7em;
       text-shadow: 1px 1px 3px #000;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 40px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background-color: rgba(20, 20, 20, 0.9);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-    }
-
-    .download-icon {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 15px;
-      filter: brightness(1.2);
-    }
-
-    .link-box {
-      background-color: #2a2a2a;
-      border-radius: 8px;
-      padding: 10px;
-      word-wrap: break-word;
-      font-size: 0.85rem;
-      color: #ccc;
-    }
-
-    .copy-btn {
-      margin-top: 8px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      background-color: #ffcc00;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .copy-btn:hover {
-      background-color: #ffe066;
     }
 
     footer {
-      color: #fff;
-      margin-top: 40px;
-      padding-bottom: 20px;
+      margin-top: 60px;
+      color: #ccc;
+      font-size: 0.9rem;
       text-shadow: 1px 1px 3px #000;
+      padding-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>download page</h1>
-  <p>welcome whoever you are</p>
 
-  <div class="container">
-    <div class="card">
-      <img src="https://i.pinimg.com/originals/77/ff/54/77ff54276e951333b7c262f0dfb94930.gif" class="download-icon" alt="Download Icon">
-      <div class="link-box">text</div>
-      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
-    </div>
+  <!-- ===== Rainbow Title ===== -->
+  <div class="site-title">citizens site</div>
 
-    <div class="card">
-      <img src="https://i.pinimg.com/originals/77/ff/54/77ff54276e951333b7c262f0dfb94930.gif" class="download-icon" alt="Download Icon">
-      <div class="link-box">textt</div>
-      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
-    </div>
-
-    <div class="card">
-      <img src="https://i.pinimg.com/originals/77/ff/54/77ff54276e951333b7c262f0dfb94930.gif" class="download-icon" alt="Download Icon">
-      <div class="link-box">text</div>
-      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
-    </div>
-
-    <div class="card">
-      <img src="https://i.pinimg.com/originals/77/ff/54/77ff54276e951333b7c262f0dfb94930.gif" class="download-icon" alt="Download Icon">
-      <div class="link-box">text</div>
-      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
-    </div>
+  <!-- ===== Navbar ===== -->
+  <div class="navbar">
+    <a href="downloads.html">downloads</a>
+    <a href="about.html">about</a>
+    <a href="other.html">other</a>
   </div>
 
-  <footer>made by citizen </footer>
-  
-  <iframe src="https://discord.com/widget?id=1426936160672022532&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-  
+  <!-- ===== Main Content ===== -->
+  <div class="main">
+    <h1>welcome</h1>
+    <p>
+      this is my site,
+    </p>
+    <p>
+      there isnt rly much to do here huh, yea its just the homepage but how bout u click them button in the top right, might lead u somewhere.
+    </p>
+  </div>
 
-  <script>
-    function copyLink(button) {
-      const linkBox = button.previousElementSibling;
-      const text = linkBox.textContent;
-      navigator.clipboard.writeText(text);
-      button.textContent = "Copied!";
-      setTimeout(() => button.textContent = "Copy Link", 1500);
-    }
-  </script>
+  <footer>2025 |website still in progress!!l</footer>
+
 </body>
 </html>
+
+
