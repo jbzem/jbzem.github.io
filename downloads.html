@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads | Nekoweb</title>
+  <style>
+    /* Rainbow gradient animation */
+    @keyframes rainbowShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #f0c330;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Animated rainbow overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 1400% 1400%;
+      animation: rainbowShift 15s ease infinite;
+      z-index: -2;
+    }
+
+    /* Slight dark overlay for readability */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: -1;
+    }
+
+    h1 {
+      color: #ffcc00;
+      font-size: 2.5rem;
+      margin-top: 25px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    p {
+      color: #eee;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: rgba(20, 20, 20, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+
+    .download-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      filter: brightness(1.2);
+    }
+
+    .link-box {
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      padding: 10px;
+      word-wrap: break-word;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    .copy-btn {
+      margin-top: 8px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .copy-btn:hover {
+      background-color: #ffe066;
+    }
+
+    footer {
+      color: #fff;
+      margin-top: 40px;
+      padding-bottom: 20px;
+      text-shadow: 1px 1px 3px #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Download Center</h1>
+  <p>Click a button to copy the download link</p>
+
+  <div class="container">
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" class="download-icon" alt="Download Icon">
+      <div class="link-box">https://example.com/download1.zip</div>
+      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" class="download-icon" alt="Download Icon">
+      <div class="link-box">https://example.com/download2.zip</div>
+      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" class="download-icon" alt="Download Icon">
+      <div class="link-box">https://example.com/download3.zip</div>
+      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" class="download-icon" alt="Download Icon">
+      <div class="link-box">https://example.com/download4.zip</div>
+      <button class="copy-btn" onclick="copyLink(this)">Copy Link</button>
+    </div>
+  </div>
+
+  <footer>© 2025 Your Nekoweb Site</footer>
+
+  <script>
+    function copyLink(button) {
+      const linkBox = button.previousElementSibling;
+      const text = linkBox.textContent;
+      navigator.clipboard.writeText(text);
+      button.textContent = "Copied!";
+      setTimeout(() => button.textContent = "Copy Link", 1500);
+    }
+  </script>
+</body>
+</html>
