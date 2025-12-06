@@ -1,156 +1,288 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>welcome</title>
-  <style>
-    /* ===== Rainbow background animation ===== */
-    @keyframes rainbowShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      color: #f0c330;
-      overflow-x: hidden;
-      position: relative;
-      text-align: center;
-      z-index: 0;
-    }
-
-    /* ===== Animated rainbow background ===== */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
-      background-size: 1400% 1400%;
-      animation: rainbowShift 15s ease infinite;
-      z-index: -2;
-    }
-
-    /* ===== Dark overlay for readability ===== */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: -1;
-    }
-
-    /* ===== Navbar ===== */
-    .navbar {
-      position: fixed;
-      top: 15px;
-      right: 25px;
-      display: flex;
-      gap: 20px;
-      z-index: 5;
-    }
-
-    .navbar a {
-      color: #ffcc00;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .navbar a:hover {
-      background: #ffcc00;
-      color: #000;
-    }
-
-    /* ===== Rainbow text title ===== */
-    .site-title {
-      position: fixed;
-      top: 15px;
-      left: 25px;
-      font-size: 1.8rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-      background-size: 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowShift 6s linear infinite;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-      user-select: none;
-    }
-
-    /* ===== Main Content ===== */
-    .main {
-      margin-top: 140px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      background: rgba(20, 20, 20, 0.85);
-      border-radius: 15px;
-      padding: 40px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-
-    h1 {
-      color: #ffcc00;
-      font-size: 2.8rem;
-      text-shadow: 2px 2px 5px #000;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #eee;
-      font-size: 1.05rem;
-      line-height: 1.7em;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    footer {
-      margin-top: 60px;
-      color: #ccc;
-      font-size: 0.9rem;
-      text-shadow: 1px 1px 3px #000;
-      padding-bottom: 20px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Unity Build Downloads — Example</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#7c3aed;
+    --glass: rgba(255,255,255,0.03);
+  }
+  body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    margin:0;background:linear-gradient(180deg,#071021 0%, #081427 100%);color:#e6eef8;min-height:100vh;}
+  header{padding:20px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(255,255,255,0.02)}
+  h1{margin:0;font-size:20px}
+  .container{max-width:1100px;margin:28px auto;padding:0 20px}
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+  input[type=search]{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;min-width:220px}
+  select,button{padding:10px 12px;border-radius:10px;border:0;background:#0b1228;color:inherit;cursor:pointer}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+  .title{font-weight:600;margin-bottom:8px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .tag{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+  .btn-row{display:flex;gap:8px;align-items:center}
+  a.download{flex:1;text-decoration:none;padding:10px 12px;border-radius:10px;text-align:center;background:var(--accent);color:white;font-weight:600}
+  .small{font-size:13px}
+  footer{padding:20px;text-align:center;color:var(--muted);font-size:13px;margin-top:28px}
+  .admin{margin-top:20px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px dashed rgba(255,255,255,0.02)}
+  label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .row{display:flex;gap:8px;align-items:center}
+  .file-input{border-radius:8px;padding:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+  .count{font-size:12px;color:var(--muted)}
+  .empty{padding:36px;text-align:center;border-radius:10px;background:rgba(255,255,255,0.01);color:var(--muted)}
+  /* small responsive */
+  @media (max-width:520px){header{padding:12px}h1{font-size:18px}.controls{flex-direction:column;align-items:stretch}}
+</style>
 </head>
 <body>
+<header>
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="flex:0 0 36px">
+    <rect x="2" y="4" width="20" height="16" rx="3" fill="#0b1220" stroke="#7c3aed"></rect>
+    <path d="M7 9h10M7 13h6" stroke="#7c3aed" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div>
+    <h1>Unity Build Downloads — Example site</h1>
+    <div class="small" style="color:var(--muted)">Sample template — replace the manifest entries with your own files you have rights to distribute.</div>
+  </div>
+</header>
 
-  <!-- ===== Rainbow Title ===== -->
-  <div class="site-title">citizens site</div>
-
-  <!-- ===== Navbar ===== -->
-  <div class="navbar">
-    <a href="downloads.html">downloads</a>
-    <a href="about.html">about</a>
-    <a href="other.html">other</a>
+<div class="container">
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search by name, tag, or platform..." />
+    <select id="filterPlatform">
+      <option value="">All platforms</option>
+      <option>Windows</option>
+      <option>Android</option>
+      <option>macOS</option>
+      <option>WebGL</option>
+    </select>
+    <select id="sort">
+      <option value="new">Newest</option>
+      <option value="popular">Most downloaded</option>
+      <option value="alpha">A → Z</option>
+    </select>
+    <div style="flex:1"></div>
+    <div class="count" id="totalCount">0 downloads</div>
   </div>
 
-  <!-- ===== Main Content ===== -->
-  <div class="main">
-    <h1>welcome</h1>
-    <p>
-      this is my site,
-    </p>
-    <p>
-      there isnt rly much to do here huh, yea its just the homepage but how bout u click them button in the top right, might lead u somewhere.
-    </p>
+  <div id="grid" class="grid"></div>
+
+  <div id="empty" class="empty" style="display:none">No builds match your search.</div>
+
+  <div class="admin" aria-live="polite">
+    <strong class="small">Admin / Editing (client-side)</strong>
+    <div class="small" style="color:var(--muted);margin-bottom:8px">
+      This editor only modifies the client-side manifest in your browser. To make permanent changes, edit the <code>manifest</code> array inside this HTML file or upload files to your host and update URLs.
+    </div>
+
+    <label>Quick add (fills manifest in memory):</label>
+    <div class="row" style="margin-bottom:8px">
+      <input id="a_name" placeholder="Name (e.g. My Unity Build)" style="flex:2;padding:10px;border-radius:8px"/>
+      <input id="a_url" placeholder="Download URL (e.g. downloads/my-build.zip)" style="flex:3;padding:10px;border-radius:8px"/>
+      <input id="a_platform" placeholder="Platform (Windows / Android)" style="flex:1;padding:10px;border-radius:8px"/>
+      <button id="addBtn">Add</button>
+    </div>
+    <div style="margin-top:6px">
+      <button id="exportJson">Export manifest (copy)</button>
+      <button id="resetDemo">Reset to demo items</button>
+    </div>
   </div>
 
-  <footer>2025 |website still in progress!!l</footer>
+  <footer>
+    <div style="max-width:820px;margin:0 auto">
+      <div style="color:var(--muted);margin-bottom:6px">Usage notes:</div>
+      <ul style="color:var(--muted);padding-left:18px;margin:0 0 10px 0">
+        <li>To use your own files: place them on your host (e.g. <code>/downloads/your-file.zip</code>) and update the manifest below.</li>
+        <li>Do not upload or distribute files you do not have rights to. This template is for lawful, permitted sharing only.</li>
+      </ul>
+      <div style="font-size:12px;color:var(--muted)">Template generated for lawful distribution only.</div>
+    </div>
+  </footer>
+</div>
 
+<script>
+/*
+  IMPORTANT:
+  - Replace or extend the 'manifest' array below with your own items.
+  - Each item needs: id (unique), name, url (link to actual file), size (optional human readable), platform, tags (array), date (ISO).
+  - Host actual files on your server (e.g. place zips in /downloads/) or use absolute URLs.
+  - This page is static; "downloads" are direct links. For protected downloads you need server-side logic (not included).
+*/
+
+/* ---------- Demo manifest (replace with your own) ---------- */
+let manifest = [
+  {
+    id: "demo-1",
+    name: "Example Unity Build — Windows x64",
+    url: "downloads/example1-windows-x64.zip",
+    size: "68 MB",
+    platform: "Windows",
+    tags: ["example","unity","windows"],
+    date: "2025-01-01T10:00:00Z",
+    downloads: 124
+  },
+  {
+    id: "demo-2",
+    name: "Example Unity Build — Android (APK)",
+    url: "downloads/example2-android.apk",
+    size: "54 MB",
+    platform: "Android",
+    tags: ["example","apk","mobile"],
+    date: "2024-12-10T09:00:00Z",
+    downloads: 89
+  },
+  {
+    id: "demo-3",
+    name: "Open-Source Unity Project (MIT)",
+    url: "downloads/example3-opensrc.zip",
+    size: "12 MB",
+    platform: "Windows",
+    tags: ["open-source","source","demo"],
+    date: "2023-06-11T08:00:00Z",
+    downloads: 45
+  }
+];
+
+/* ---------- UI code (no server required) ---------- */
+
+const grid = document.getElementById('grid');
+const totalCountEl = document.getElementById('totalCount');
+const emptyEl = document.getElementById('empty');
+const searchInput = document.getElementById('search');
+const filterPlatform = document.getElementById('filterPlatform');
+const sortSelect = document.getElementById('sort');
+
+function renderList(items){
+  grid.innerHTML = '';
+  if(!items || items.length === 0){
+    emptyEl.style.display = 'block';
+    totalCountEl.textContent = '0 downloads';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  totalCountEl.textContent = items.length + (items.length===1? ' build':' builds');
+
+  items.forEach(it=>{
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = `
+      <div class="meta">${new Date(it.date).toLocaleDateString()} • ${it.platform || 'Unknown'}</div>
+      <div class="title">${escapeHtml(it.name)}</div>
+      <div class="tags">${(it.tags||[]).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+      <div class="small" style="margin-bottom:10px;color:var(--muted)">${it.size || ''}</div>
+      <div class="btn-row">
+        <a class="download" href="${escapeAttr(it.url)}" download>Download</a>
+        <button class="small show-info" data-id="${it.id}">Info</button>
+      </div>
+    `;
+    grid.appendChild(c);
+  });
+
+  // wire info buttons
+  document.querySelectorAll('.show-info').forEach(b=>{
+    b.addEventListener('click', e=>{
+      const id = e.currentTarget.dataset.id;
+      const it = manifest.find(m=>m.id===id);
+      if(!it) return;
+      alert(`${it.name}\n\nURL: ${it.url}\nSize: ${it.size||'unknown'}\nPlatform: ${it.platform||'unknown'}\nTags: ${(it.tags||[]).join(', ')}\nDownloads: ${it.downloads||0}`);
+    });
+  });
+}
+
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+function escapeAttr(s){ return (s||'').replace(/"/g,'&quot;'); }
+
+function applyFilters(){
+  const q = (searchInput.value || '').toLowerCase().trim();
+  const pf = (filterPlatform.value || '').toLowerCase();
+  let out = manifest.filter(it=>{
+    if(pf && ((it.platform||'').toLowerCase()) !== pf) return false;
+    if(!q) return true;
+    const hay = [it.name, it.tags && it.tags.join(' '), it.platform, it.size].join(' ').toLowerCase();
+    return hay.indexOf(q) !== -1;
+  });
+
+  const sort = sortSelect.value;
+  if(sort === 'new'){
+    out.sort((a,b)=> new Date(b.date) - new Date(a.date));
+  } else if(sort === 'popular'){
+    out.sort((a,b)=> (b.downloads||0) - (a.downloads||0));
+  } else if(sort === 'alpha'){
+    out.sort((a,b)=> a.name.localeCompare(b.name));
+  }
+  renderList(out);
+}
+
+/* admin quick add */
+document.getElementById('addBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('a_name').value.trim() || 'Unnamed build';
+  const url = document.getElementById('a_url').value.trim() || '#';
+  const platform = document.getElementById('a_platform').value.trim() || 'Unknown';
+  const id = 'item-' + Math.random().toString(36).slice(2,9);
+  manifest.unshift({
+    id, name, url, platform, tags:[], size:'?', date: new Date().toISOString(), downloads: 0
+  });
+  applyFilters();
+  document.getElementById('a_name').value=''; document.getElementById('a_url').value=''; document.getElementById('a_platform').value='';
+});
+
+/* export JSON */
+document.getElementById('exportJson').addEventListener('click', ()=>{
+  const data = JSON.stringify(manifest, null, 2);
+  navigator.clipboard?.writeText(data).then(()=> alert('Manifest copied to clipboard — paste into the manifest array in the HTML file to persist.'), ()=> {
+    const w = window.open();
+    w.document.body.textContent = data;
+  });
+});
+
+/* reset demo */
+document.getElementById('resetDemo').addEventListener('click', ()=>{
+  if(!confirm('Reset to demo items? This will replace the manifest in memory.')) return;
+  manifest = [
+    {
+      id: "demo-1",
+      name: "Example Unity Build — Windows x64",
+      url: "downloads/example1-windows-x64.zip",
+      size: "68 MB",
+      platform: "Windows",
+      tags: ["example","unity","windows"],
+      date: "2025-01-01T10:00:00Z",
+      downloads: 124
+    },
+    {
+      id: "demo-2",
+      name: "Example Unity Build — Android (APK)",
+      url: "downloads/example2-android.apk",
+      size: "54 MB",
+      platform: "Android",
+      tags: ["example","apk","mobile"],
+      date: "2024-12-10T09:00:00Z",
+      downloads: 89
+    },
+    {
+      id: "demo-3",
+      name: "Open-Source Unity Project (MIT)",
+      url: "downloads/example3-opensrc.zip",
+      size: "12 MB",
+      platform: "Windows",
+      tags: ["open-source","source","demo"],
+      date: "2023-06-11T08:00:00Z",
+      downloads: 45
+    }
+  ];
+  applyFilters();
+});
+
+/* events */
+searchInput.addEventListener('input', applyFilters);
+filterPlatform.addEventListener('change', applyFilters);
+sortSelect.addEventListener('change', applyFilters);
+
+/* init */
+applyFilters();
+</script>
 </body>
 </html>
-
-
